@@ -1,0 +1,11 @@
+# Project file
+.idea/*
+
+# Personal files
+rawData/*
+data.txt
+craw.log
+config.py
+
+# .pyc files
+*.pyc
