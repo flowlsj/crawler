@@ -1,2 +1,10 @@
 # Project file
 .idea/*
+
+# Personal files
+data.txt
+craw.log
+config.log
+
+# .pyc files
+*.pyc

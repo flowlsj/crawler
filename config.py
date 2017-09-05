@@ -9,3 +9,6 @@ class CONFIG(object):
     MONGODB_PROT = 27017
     MONGODB_DATABASE = "word"
     MONGODB_COLLECTION = "words"
+
+
+    CRAW_LOG_FILE = "craw.log"
