@@ -1,2 +1,5 @@
 # Project file
 .idea/*
+data.txt
+craw.log
+config.log

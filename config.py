@@ -11,4 +11,4 @@ class CONFIG(object):
     MONGODB_COLLECTION = "words"
 
 
-    CRAW_LOG_FILE = "..\\craw.log"
+    CRAW_LOG_FILE = "craw.log"
