@@ -29,17 +29,23 @@ class UrlManager(object):
 
     def add_url(self, current_url, new_url):
         if current_url is None or new_url is None:
-            return
+            return None
         if len(self.urls) < self.look_up_depth:
             if new_url.startswith("http") or new_url.startswith("www"):
-                self.urls.append(new_url)
+                if new_url.find(self.base_url) == -1:
+                    # Not the web we want to craw
+                    new_url = None
             elif new_url.startswith("/"):
                 new_url = self.base_url + new_url
                 self.urls.append(new_url)
             else:
                 last_slash_index = current_url.rfind('/')
                 new_url = current_url[0: last_slash_index + 1] + new_url
+            if new_url not in self.urls:
                 self.urls.append(new_url)
+            else:
+                new_url = None
+        return new_url
 
     def get_url(self):
         if self.has_url():
@@ -70,15 +76,16 @@ class HtmlParser(object):
         pass
 
     @classmethod
-    def parse_content(cls, page, tag='a'):
+    def parse_content(cls, page, tag='a', attribute='href'):
         if page is None:
             return None
         word_dict = dict()
         bs = BeautifulSoup(page, 'lxml')
         nodes = bs.find_all(tag)
         for node in nodes:
-            if node.string is not None:
-                word_dict[node.string] = node.get('href')
+            if node.string is not None and node.get(attribute) is not None:
+                word_dict[node.string] = node.get(attribute)
         return word_dict
+
 class contentManager(object):
     pass
