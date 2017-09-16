@@ -37,6 +37,7 @@ class UrlManager(object):
                     new_url = None
             elif new_url.startswith("/"):
                 new_url = self.base_url + new_url
+                self.urls.append(new_url)
             else:
                 last_slash_index = current_url.rfind('/')
                 new_url = current_url[0: last_slash_index + 1] + new_url
